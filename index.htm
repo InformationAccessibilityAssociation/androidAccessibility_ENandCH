@@ -1,0 +1,296 @@
+﻿<!DOCTYPE HTML>
+<!-- saved from url=(0069)http://developer.android.com/guide/topics/ui/accessibility/index.html -->
+<!DOCTYPE html PUBLIC "" ""><HTML><HEAD><META content="IE=11.0000" 
+http-equiv="X-UA-Compatible">
+ 
+<META http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+<META name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"> 
+<META http-equiv="X-UA-Compatible" content="IE=edge"> 
+<META name="Description" content="How to make your apps accessible to users with visual, physical, or other limitations. Robust support will increase your app's user base."> 
+<LINK href="/favicon.ico" rel="shortcut icon" type="image/x-icon"> <LINK href="http://developer.android.com/guide/topics/ui/accessibility/index.html" 
+rel="alternate" hreflang="en"> <LINK href="http://developer.android.com/intl/es/guide/topics/ui/accessibility/index.html" 
+rel="alternate" hreflang="es"> <LINK href="http://developer.android.com/intl/id/guide/topics/ui/accessibility/index.html" 
+rel="alternate" hreflang="id"> <LINK href="http://developer.android.com/intl/ja/guide/topics/ui/accessibility/index.html" 
+rel="alternate" hreflang="ja"> <LINK href="http://developer.android.com/intl/ko/guide/topics/ui/accessibility/index.html" 
+rel="alternate" hreflang="ko"> <LINK href="http://developer.android.com/intl/pt-br/guide/topics/ui/accessibility/index.html" 
+rel="alternate" hreflang="pt-br"> <LINK href="http://developer.android.com/intl/ru/guide/topics/ui/accessibility/index.html" 
+rel="alternate" hreflang="ru"> <LINK href="http://developer.android.com/intl/vi/guide/topics/ui/accessibility/index.html" 
+rel="alternate" hreflang="vi"> <LINK href="http://developer.android.com/intl/zh-cn/guide/topics/ui/accessibility/index.html" 
+rel="alternate" hreflang="zh-cn"> <LINK href="http://developer.android.com/intl/zh-tw/guide/topics/ui/accessibility/index.html" 
+rel="alternate" hreflang="zh-tw"> <TITLE>无障碍|Android开发</TITLE> <!-- STYLESHEETS --> <LINK href="style/css" 
+rel="stylesheet"> <LINK title="roboto" href="style/css.css" 
+rel="stylesheet"> <LINK href="style/default.css" 
+rel="stylesheet" type="text/css"> <!-- JAVASCRIPT --> 
+<SCRIPT src="style/jsapi.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT src="style/android_3p-bundle.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT type="text/javascript">
+  var toRoot = "/";
+  var metaTags = [];
+  var devsite = false;
+  var useUpdatedTemplates = false;
+</SCRIPT>
+ 
+<SCRIPT src="style/docs.js" type="text/javascript"></SCRIPT>
+<SCRIPT>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5831155-1', 'android.com');
+  ga('create', 'UA-49880327-2', 'android.com', {'name': 'universal'});  // New tracker);
+  ga('send', 'pageview');
+  ga('universal.send', 'pageview'); // Send page view for new tracker.
+</SCRIPT>
+ 
+<META name="GENERATOR" content="MSHTML 11.00.9600.18057"></HEAD> 
+<BODY class="gc-documentation&#10;&#10;&#10;develop guide" itemtype="http://schema.org/Article" 
+itemscope=""><A name="top"></A> 
+<SCRIPT type="text/javascript">
+<!--
+    buildToggleLists();
+    changeNavLang(getLangPref());
+//-->
+</SCRIPT>
+         </DIV></DIV></DIV><!-- end side-nav -->     
+<SCRIPT>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </SCRIPT>
+ 
+ 
+ <!--正文-->
+ 
+<DIV class="col-12" id="doc-col">
+<br/>
+<div class="nav">
+<div>
+<ul class="nav1">
+<li><a href="declaration.htm">翻译声明</a></li>
+<li><a href="https://developer.android.com/guide/topics/ui/accessibility/index.html">英文原文</a></li>
+<li><a href="http://informationaccessibilityassociation.github.io/androidAccessibility/declaration.htm">中文版</a></li>
+</ul>
+</div>
+<div align="right">
+<a href="http://www.siaa.org.cn/"><img src="logo.png" alt="信息无障碍研究会logo" class="yanjiuhuilogo"></img></a>
+</div>
+</div>
+<br/>
+<hr class="fengexian"/>
+<H1 itemprop="name">无障碍</H1>
+<DIV id="jd-content">
+<DIV class="jd-descr" itemprop="articleBody">
+<DIV id="qv-wrapper">
+<DIV id="qv">
+<H2>主题</H2>
+
+<OL>
+<LI><A href="index.htm"> 
+     无障碍</A></LI>
+  <LI><A href="apps.htm"> 
+     让应用无障碍</A></LI>
+  <LI><A href="checklist.htm"> 
+     无障碍开发清单</A></LI>
+  <LI><A href="services.htm"> 
+     构建无障碍服务</A></LI></OL>
+<H2>更多</H2>
+
+  <OL>
+  <LI><A 
+  href="http://developer.android.com/design/patterns/accessibility.html">Android 
+  设计：无障碍</A></LI>
+  <LI><A 
+  href="http://developer.android.com/training/accessibility/index.html">培训：实现无障碍</A></LI>
+  <LI><A href="http://developer.android.com/tools/testing/testing_accessibility.html">无障碍检测清单</A></LI></OL>
+ 
+<H2>相关视频</H2>
+
+<OL>
+  <LI><IFRAME width="210" height="160" title="Google I/O 2012 -  让应用无障碍" 
+  src="style/q3HliaMjL38.htm" 
+  frameborder="0" allowfullscreen=""></IFRAME>     
+  <LI></LI></OL>
+ </DIV>
+</DIV>
+
+<P>Many Android users have different abilities that require them to interact 
+with their Android devices in different ways. These include users who have 
+visual, physical or age-related limitations that prevent them from fully seeing 
+or using a touchscreen, and users with hearing loss who may not be able to 
+perceive audible information and alerts.</P>
+
+<p class="zhongwen">很多Android用户因能力差异，需要使用不同的方式与Android设备进行交互。视觉障碍、肢体残疾和与年龄有关的障碍用户，不能充分的看到或使用触摸屏，还有听力障碍用户因听力损失而无法获取音频信息和警报。</p>
+
+<P>Android provides accessibility features and services for helping these users 
+navigate their devices more easily, including text-to-speech, haptic feedback, 
+gesture navigation, trackball and directional-pad navigation. Android 
+application developers can take advantage of these services to make their 
+applications more accessible.</P>
+
+<P class="zhongwen">Android提供了无障碍特性和服务，帮助这些用户更轻松地浏览他们的设备，包括文本转语音、触觉反馈、手势导航、轨迹球和定向垫导航。 Android应用程序开发者可以利用这些服务，使他们的应用程序更加无障碍。</P>
+
+<P>Android developers can also build their own accessibility services, which can 
+provide enhanced usability features such as audio prompting, physical feedback, 
+and alternative navigation modes. Accessibility services can provide these 
+enhancements for all applications, a set of applications or just a single 
+app.</P>
+
+<P class="zhongwen">Android开发者还可以建立自己的无障碍服务，提供更强的可用性特性，如音频提示、物理反馈以及替代导航方式。无障碍服务可以为所有应用、一组应用或单一的app提供这些增强特性。</P>
+
+<P>The following topics show you how to use the Android framework to make 
+applications more accessible.</P>
+
+<P class="zhongwen">以下主题展示了如何使用Android框架，使应用程序更加无障碍：</P>
+
+  
+  <DL>
+  <DT><STRONG><A href="apps.htm"> 
+ 让应用无障碍</A></STRONG>   </DT>
+   <DD>Development practices and API features to ensure your application is 
+  accessible to users with disabilities.</DD>
+  <DD class="zhongwen">开发实践和API特性可以确保应用程序对残障人群无障碍。</DD>
+  
+  <DT><STRONG><A href="checklist.htm"> 
+ 无障碍开发清单</A></STRONG>   </DT>
+   <DD>A checklist to help developers ensure that their applications are 
+  accessible.</DD>
+  <DD class="zhongwen">一个帮助开发人员确保他们的应用无障碍的清单。</DD>
+  <DT><STRONG><A href="services.htm"> 
+  构建无障碍服务</A></STRONG>   </DT>
+  <DD>How to use API features to build services that make other applications 
+  more accessible for users.</DD>
+  <DD class="zhongwen">如何使用API特性来构建无障碍服务，使其他应用程序对用户更加无障碍。</DD></DL>
+  
+  </DIV></DIV>
+  
+  <!--完-->
+  <!-- end jd-content --> 
+<DIV class="wrap">
+<DIV class="dac-footer">
+<DIV class="cols dac-footer-main">
+<DIV class="col-1of2"><A class="dac-footer-getnews" href="javascript:;" 
+data-modal-toggle="newsletter">Get news &amp; tips <SPAN class="dac-fab dac-primary"><I 
+class="dac-sprite dac-mail"></I></SPAN></A>       </DIV>
+<DIV class="col-1of2 dac-footer-reachout">
+<DIV class="dac-footer-contact"><A class="dac-footer-contact-link" href="http://android-developers.blogspot.com/">Blog</A> 
+          <A class="dac-footer-contact-link" href="http://developer.android.com/support.html">Support</A> 
+        </DIV>
+<DIV class="dac-footer-social"><A class="dac-fab dac-footer-social-link" href="https://www.youtube.com/user/androiddevelopers"><I 
+class="dac-sprite dac-youtube"></I></A>           <A class="dac-fab dac-footer-social-link" 
+href="https://plus.google.com/+AndroidDevelopers"><I class="dac-sprite dac-gplus"></I></A> 
+          <A class="dac-fab dac-footer-social-link" href="https://twitter.com/AndroidDev"><I 
+class="dac-sprite dac-twitter"></I></A>         </DIV></DIV></DIV>
+<HR class="dac-footer-separator">
+
+<P class="dac-footer-copyright">          Except as noted, this content is  
+licensed under <A href="http://creativecommons.org/licenses/by/2.5/">  Creative 
+Commons Attribution 2.5</A>. For details and  restrictions, see the <A href="http://developer.android.com/license.html">Content 
+ License</A>.       </P>
+<P class="dac-footer-links"><A href="http://developer.android.com/about/index.html">About 
+Android</A>       <A 
+href="http://developer.android.com/auto/index.html">Auto</A>       <A href="http://developer.android.com/tv/index.html">TV</A> 
+      <A href="http://developer.android.com/wear/index.html">Wear</A>       <A 
+href="http://developer.android.com/legal.html">Legal</A>       <SPAN class="locales" 
+id="language"><SELECT name="language" onchange="changeLangPref(this.value, true)"><OPTION 
+   value="en">English</OPTION>           <OPTION 
+  value="es">Español</OPTION>           <OPTION value="in">Bahasa 
+  Indonesia</OPTION>           <OPTION value="ja">日本語</OPTION>           <OPTION 
+  value="ko">한국어</OPTION>           <OPTION value="pt-br">Português 
+  Brasileiro</OPTION>           <OPTION value="ru">Русский</OPTION>           
+  <OPTION value="vi">tiếng Việt</OPTION>           <OPTION 
+  value="zh-cn" selected="selected">中文（简体)</OPTION>           <OPTION value="zh-tw">中文（繁體)</OPTION>  
+         </SELECT>       </SPAN></P></DIV></DIV><!-- end footer --> 
+<DIV class="dac-modal newsletter" data-swap="" data-newsletter="" data-modal="newsletter">
+<DIV class="dac-modal-container">
+<DIV class="dac-modal-window"><HEADER class="dac-modal-header"><BUTTON class="dac-modal-header-close" 
+data-modal-toggle=""><I class="dac-sprite dac-close"></I></BUTTON>         
+<DIV class="dac-swap" data-swap-container=""><SECTION class="dac-swap-section dac-active dac-down">
+<H2 class="norule dac-modal-header-title">Get the latest Android developer news 
+and tips that will help you find success on Google Play.</H2>
+<P class="dac-modal-header-subtitle">* Required Fields</P></SECTION><SECTION 
+class="dac-swap-section dac-up">
+<H2 class="norule dac-modal-header-title">Hooray!</H2></SECTION></DIV></HEADER>
+<DIV class="dac-swap" data-swap-container=""><SECTION class="dac-swap-section dac-active dac-left">
+<FORM class="dac-form" action="https://docs.google.com/forms/d/1QgnkzbEJIDu9lMEea0mxqWrXUJu0oBCLD7ar23V0Yys/formResponse" 
+method="post" target="dac-newsletter-iframe"><SECTION class="dac-modal-content">
+<FIELDSET class="dac-form-fieldset">
+<DIV class="cols">
+<DIV class="col-1of2 newsletter-leftCol">
+<DIV class="dac-form-input-group"><LABEL class="dac-form-floatlabel" for="newsletter-full-name">Full 
+name</LABEL><INPUT name="entry.1357890476" class="dac-form-input" id="newsletter-full-name" required="" type="text"><SPAN 
+class="dac-form-required">*</SPAN></DIV>
+<DIV class="dac-form-input-group"><LABEL class="dac-form-floatlabel" for="newsletter-email">Email 
+address</LABEL><INPUT name="entry.472100832" class="dac-form-input" id="newsletter-email" required="" type="email"><SPAN 
+class="dac-form-required">*</SPAN></DIV></DIV>
+<DIV class="col-1of2 newsletter-rightCol">
+<DIV class="dac-form-input-group"><LABEL class="dac-form-floatlabel" for="newsletter-company">Company 
+/ developer 
+name</LABEL><INPUT name="entry.1664780309" class="dac-form-input" id="newsletter-company" type="text"></DIV>
+<DIV class="dac-form-input-group"><LABEL class="dac-form-floatlabel" for="newsletter-play-store">One 
+of your Play Store app URLs</LABEL><INPUT name="entry.47013838" class="dac-form-input" id="newsletter-play-store" required="" type="url"><SPAN 
+class="dac-form-required">*</SPAN></DIV></DIV></DIV></FIELDSET>
+<FIELDSET class="dac-form-fieldset">
+<DIV class="cols">
+<DIV class="col-1of2 newsletter-leftCol"><LEGEND class="dac-form-legend">Which 
+best describes your business:<SPAN class="dac-form-required">*</SPAN>            
+         </LEGEND>
+<DIV class="dac-form-radio-group"><INPUT name="entry.1796324055" class="dac-form-radio" 
+id="newsletter-business-type-app" required="" type="radio" value="Apps">         
+              <LABEL class="dac-form-radio-button" for="newsletter-business-type-app"></LABEL> 
+                      <LABEL class="dac-form-label" for="newsletter-business-type-app">Apps</LABEL> 
+                    </DIV>
+<DIV class="dac-form-radio-group"><INPUT name="entry.1796324055" class="dac-form-radio" 
+id="newsletter-business-type-games" required="" type="radio" value="Games">      
+                 <LABEL class="dac-form-radio-button" for="newsletter-business-type-games"></LABEL> 
+                      <LABEL class="dac-form-label" for="newsletter-business-type-games">Games</LABEL> 
+                    </DIV>
+<DIV class="dac-form-radio-group"><INPUT name="entry.1796324055" class="dac-form-radio" 
+id="newsletter-business-type-appsgames" required="" type="radio" value="Apps and Games"> 
+                      <LABEL class="dac-form-radio-button" for="newsletter-business-type-appsgames"></LABEL> 
+                      <LABEL class="dac-form-label" for="newsletter-business-type-appsgames">Apps 
+&amp; Games</LABEL>                     </DIV></DIV>
+<DIV class="col-1of2 newsletter-rightCol newsletter-checkboxes">
+<DIV class="dac-form-radio-group">
+<DIV class="dac-media">
+<DIV class="dac-media-figure"><INPUT name="entry.732309842" class="dac-form-checkbox" 
+id="newsletter-add" required="" type="checkbox" value="Add me to the mailing list for the monthly newsletter and occasional emails about development and Google Play opportunities."> 
+                          <LABEL class="dac-form-checkbox-button" for="newsletter-add"></LABEL> 
+                        </DIV>
+<DIV class="dac-media-body"><LABEL class="dac-form-label dac-form-aside" for="newsletter-add">Add 
+me to the mailing list for the monthly newsletter and occasional emails about 
+development and Google Play opportunities.<SPAN 
+class="dac-form-required">*</SPAN></LABEL>                         
+</DIV></DIV></DIV>
+<DIV class="dac-form-radio-group">
+<DIV class="dac-media">
+<DIV class="dac-media-figure"><INPUT name="entry.2045036090" class="dac-form-checkbox" 
+id="newsletter-terms" required="" type="checkbox" value="I acknowledge that the information provided in this form will be subject to Google's privacy policy (https://www.google.com/policies/privacy/)."> 
+                          <LABEL class="dac-form-checkbox-button" for="newsletter-terms"></LABEL> 
+                        </DIV>
+<DIV class="dac-media-body"><LABEL class="dac-form-label dac-form-aside" for="newsletter-terms">I 
+acknowledge that the information provided in this form will be subject to <A 
+href="https://www.google.com/policies/privacy/">Google's privacy 
+policy</A>.<SPAN class="dac-form-required">*</SPAN></LABEL>                      
+   </DIV></DIV></DIV></DIV></DIV></FIELDSET></SECTION><FOOTER class="dac-modal-footer">
+<DIV class="cols">
+<DIV class="col-2of5"></DIV></DIV><BUTTON class="dac-fab dac-primary dac-large dac-modal-action" 
+type="submit" value="Submit"><I class="dac-sprite dac-arrow-right"></I></BUTTON> 
+            </FOOTER></FORM></SECTION><SECTION class="dac-swap-section dac-right">
+<DIV class="dac-modal-content">
+<P class="newsletter-success-message">              You have successfully signed 
+up for the latest Android developer news and tips.             
+</P></DIV></SECTION></DIV></DIV></DIV></DIV><!-- end footer --> </DIV><!-- end doc-content --> 
+</DIV><!-- end .cols --> </DIV><!-- end body-content -->   
+<SCRIPT src="style/ytblogger_lists_unified.json" type="text/javascript"></SCRIPT>
+   
+<SCRIPT src="style/jd_lists_unified.js" type="text/javascript"></SCRIPT>
+   
+<SCRIPT src="style/jd_extras.js" type="text/javascript"></SCRIPT>
+   
+<SCRIPT src="style/jd_collections.js" type="text/javascript"></SCRIPT>
+   
+<SCRIPT src="style/jd_tag_helpers.js" type="text/javascript"></SCRIPT>
+ </BODY></HTML>

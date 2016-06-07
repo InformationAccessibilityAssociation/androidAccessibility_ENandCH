@@ -1,0 +1,779 @@
+﻿<!DOCTYPE HTML>
+<!-- saved from url=(0072)http://developer.android.com/guide/topics/ui/accessibility/services.html -->
+<!DOCTYPE html PUBLIC "" ""><HTML lang="zh-CN"><HEAD><META content="IE=11.0000" 
+http-equiv="X-UA-Compatible">
+ 
+<META http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+<META name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"> 
+<META http-equiv="X-UA-Compatible" content="IE=edge"> 
+<META name="Description" content="An accessibility service is an application that provides user interface enhancements to assist users with disabilities, or who may temporarily be unable to fully interact with a device. For example, users who are driving, taking care of a young child …"> 
+<LINK href="/favicon.ico" rel="shortcut icon" type="image/x-icon"> <LINK href="http://developer.android.com/guide/topics/ui/accessibility/services.html" 
+rel="alternate" hreflang="en"> <LINK href="http://developer.android.com/intl/es/guide/topics/ui/accessibility/services.html" 
+rel="alternate" hreflang="es"> <LINK href="http://developer.android.com/intl/id/guide/topics/ui/accessibility/services.html" 
+rel="alternate" hreflang="id"> <LINK href="http://developer.android.com/intl/ja/guide/topics/ui/accessibility/services.html" 
+rel="alternate" hreflang="ja"> <LINK href="http://developer.android.com/intl/ko/guide/topics/ui/accessibility/services.html" 
+rel="alternate" hreflang="ko"> <LINK href="http://developer.android.com/intl/pt-br/guide/topics/ui/accessibility/services.html" 
+rel="alternate" hreflang="pt-br"> <LINK href="http://developer.android.com/intl/ru/guide/topics/ui/accessibility/services.html" 
+rel="alternate" hreflang="ru"> <LINK href="http://developer.android.com/intl/vi/guide/topics/ui/accessibility/services.html" 
+rel="alternate" hreflang="vi"> <LINK href="http://developer.android.com/intl/zh-cn/guide/topics/ui/accessibility/services.html" 
+rel="alternate" hreflang="zh-cn"> <LINK href="http://developer.android.com/intl/zh-tw/guide/topics/ui/accessibility/services.html" 
+rel="alternate" hreflang="zh-tw"> <TITLE>构建无障碍服务|Android开发</TITLE> <!-- STYLESHEETS --> 
+<LINK href="style/css" 
+rel="stylesheet"> <LINK title="roboto" href="style/css.css" 
+rel="stylesheet"> <LINK href="style/default.css" 
+rel="stylesheet" type="text/css"> <!-- JAVASCRIPT --> 
+<SCRIPT src="style/jsapi.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT src="style/android_3p-bundle.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT type="text/javascript">
+  var toRoot = "/";
+  var metaTags = [];
+  var devsite = false;
+  var useUpdatedTemplates = false;
+</SCRIPT>
+ 
+<SCRIPT src="style/docs.js" type="text/javascript"></SCRIPT>
+ 
+<SCRIPT>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5831155-1', 'android.com');
+  ga('create', 'UA-49880327-2', 'android.com', {'name': 'universal'});  // New tracker);
+  ga('send', 'pageview');
+  ga('universal.send', 'pageview'); // Send page view for new tracker.
+</SCRIPT>
+ 
+<META name="GENERATOR" content="MSHTML 11.00.9600.18057"></HEAD> 
+<BODY class="gc-documentation&#10;&#10;&#10;develop guide" itemtype="http://schema.org/Article" 
+itemscope=""><A name="top"></A> 
+<SCRIPT type="text/javascript">
+<!--
+    buildToggleLists();
+    changeNavLang(getLangPref());
+//-->
+</SCRIPT>
+         </DIV></DIV></DIV><!-- end side-nav -->     
+<SCRIPT>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </SCRIPT>
+ 
+ 
+ <!--正文-->
+<DIV class="col-12" id="doc-col">
+<br/>
+<div class="nav">
+<div>
+<ul class="nav1">
+<li><a href="declaration.htm">翻译声明</a></li>
+<li><a href="https://developer.android.com/guide/topics/ui/accessibility/index.html">英文原文</a></li>
+<li><a href="http://informationaccessibilityassociation.github.io/androidAccessibility/declaration.htm">中文版</a></li>
+</ul>
+</div>
+<div align="right">
+<a href="http://www.siaa.org.cn/"><img src="logo.png" alt="信息无障碍研究会logo" class="yanjiuhuilogo"></img></a>
+</div>
+</div>
+<br/>
+<hr class="fengexian"/>
+<H1 itemprop="name">构建无障碍服务</H1>
+<DIV id="jd-content">
+<DIV class="jd-descr" itemprop="articleBody">
+<DIV id="qv-wrapper">
+<DIV id="qv">
+<H2>主题</H2>
+
+<OL>
+<LI><A href="index.htm"> 
+     无障碍</A></LI>
+  <LI><A href="apps.htm"> 
+     让应用无障碍</A></LI>
+  <LI><A href="checklist.htm"> 
+     无障碍开发清单</A></LI>
+  <LI><A href="services.htm"> 
+     构建无障碍服务</A></LI></OL>
+<H2>本章目录</H2>
+  <OL>
+  <LI><A href="services.htm#manifest">manifest声明和权限</A>       
+  <OL>
+    <LI><A href="services.htm#service-declaration">无障碍服务声明</A></LI>
+    <LI><A href="services.htm#service-config">无障碍服务配置</A></LI></OL></LI>
+  <LI><A href="services.htm#register">注册无障碍事件</A></LI>
+  <LI><A href="services.htm#methods">无障碍服务方法</A></LI>
+  <LI><A href="services.htm#event-details">获得事件详情</A></LI>
+  <LI><A href="services.htm#act-for-users">为用户采取措施</A>       
+  <OL>
+    <LI><A href="services.htm#detect-gestures">手势监听</A></LI>
+    <LI><A href="services.htm#using-actions">使用无障碍操作</A></LI>
+    <LI><A href="services.htm#focus-types">使用焦点模式</A></LI></OL></LI>
+  <LI><A href="services.htm#examples">样例代码</A></LI></OL>
+  
+<H2>关键类</H2>
+<OL>
+  <LI><CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html">AccessibilityService</A></CODE></LI>
+  <LI><CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityServiceInfo.html">AccessibilityServiceInfo</A></CODE></LI>
+  <LI><CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityEvent.html">AccessibilityEvent</A></CODE></LI>
+  <LI><CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityRecord.html">AccessibilityRecord</A></CODE></LI>
+  <LI><CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html">AccessibilityNodeInfo</A></CODE></LI></OL>
+  
+
+<H2>更多</H2>
+<OL>
+  <LI><A 
+  href="http://developer.android.com/training/accessibility/index.html">培训：实现无障碍</A></LI></OL>
+  
+  </DIV></DIV>
+
+
+<P>An accessibility service is an application that provides user interface 
+enhancements to assist users with disabilities, or who may temporarily be unable 
+to fully interact with a device. For example, users who are driving, taking care 
+of a young child or attending a very loud party might need additional or 
+alternative interface feedback.</P>
+<P class="zhongwen">无障碍服务是一个为残疾人或可能暂时无法与设备完全互动的人提供用户界面扩展功能的应用程序。例如，在开车、照顾孩子或参加一个非常喧闹的宴会时，用户可能需要另外的交互反馈作为补充或替代。</P>
+
+<P>Android provides standard accessibility services, including TalkBack, and 
+developers can create and distribute their own services. This document explains 
+the basics of building an accessibility service.</P>
+<P class="zhongwen">Android提供了标准的无障碍服务，包括TalkBack，开发人员可以创建和发布自己的服务。 本文档介绍了构建无障碍服务的基本知识。</P>
+
+
+<P>The ability for you to build and deploy accessibility services was introduced 
+with Android 1.6  (API Level 4) and received significant improvements with 
+Android 4.0 (API Level 14). The Android   <A href="http://developer.android.com/tools/support-library/index.html">Support 
+Library</A> was also updated with  the release of Android 4.0 to provide support 
+for these enhanced accessibility features back to  Android 1.6. Developers 
+aiming for widely compatible accessibility services are encouraged to use  the 
+Support Library and develop for the more advanced accessibility features 
+introduced in  Android 4.0.</P>
+<P class="zhongwen">构建和部署无障碍服务的能力在Android 1.6（API等级4）被推出，并在Android 4.0（API等级14）明显改善其功能。Android<A href="http://developer.android.com/tools/support-library/index.html">支持库</A>也被更新，Android 4.0发布的支持库可以使得这些无障碍特性也能支持android 1.6。鼓励那些致力于实现广泛可兼容的无障碍服务开发者们使用支持库，并且在安卓4.0版本中开发更多先进的无障碍特性。</P>
+
+
+<H2 id="manifest"> manifest声明和权限</H2>
+
+<P>Applications that provide accessibility services must include specific 
+declarations in their application manifests to be treated as an accessibility 
+service by the Android system. This section explains the required and optional 
+settings for accessibility services.</P>
+<P class="zhongwen">提供无障碍服务的应用，必须在应用的声明（manifest）文件中明确声明，以便android系统把此应用程序作为无障碍服务处理。本节介绍无障碍服务的必需和可选设置。</P>
+
+<H3 id="service-declaration">无障碍服务声明</H3>
+
+<P>In order to be treated as an accessibility service, you must include a 
+<CODE>service</CODE> element (rather than the <CODE>activity</CODE> element) 
+within the <CODE>application</CODE> element in your manifest. In addition, 
+within the <CODE>service</CODE> element, you must also include an accessibility 
+service intent filter. For compatiblity with Android 4.1 and higher, the 
+manifest must also request the <CODE><A href="http://developer.android.com/reference/android/Manifest.permission.html#BIND_ACCESSIBILITY_SERVICE">BIND_ACCESSIBILITY_SERVICE</A></CODE> 
+permission as shown in the following sample:</P>
+<P class="zhongwen">为了能被看作一个无障碍服务，必须在声明文件中的应用程序（<CODE>application</CODE>）元素中包含服务（<CODE>service</CODE>）元素（而不是活动（<CODE>activity</CODE>）元素）。此外，在服务（<CODE>service</CODE>）元素内，还必须包括无障碍服务的目标过滤器。为了兼容Android 4.1及更高版本的系统，声明文件中必须请求<CODE><A href="http://developer.android.com/reference/android/Manifest.permission.html#BIND_ACCESSIBILITY_SERVICE">BIND_ACCESSIBILITY_SERVICE</A></CODE>的权限，如下例所示：</P>
+
+<PRE>&lt;manifest&gt;
+  ...
+  &lt;uses-permission ... /&gt;
+  ...
+  &lt;application&gt;
+    ...
+    &lt;service android:name=".MyAccessibilityService"
+        android:label="@string/accessibility_service_label"
+        android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"&gt;
+      &lt;intent-filter&gt;
+        &lt;action android:name="android.accessibilityservice.AccessibilityService" /&gt;
+      &lt;/intent-filter&gt;
+    &lt;/service&gt;
+    &lt;uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE" /&gt;
+  &lt;/application&gt;
+&lt;/manifest&gt;
+</PRE>
+
+<P>These declarations are required for all accessibility services deployed on 
+Android 1.6 (API Level 4) or higher.</P>
+<P class="zhongwen">在Android 1.6（API等级4）和更高版本的系统中，所有无障碍服务都需要部署这些声明。</P>
+
+
+<H3 id="service-config">无障碍服务配置</H3>
+
+<P>Accessibility services must also provide a configuration which specifies the 
+types of accessibility events that the service handles and additional 
+information about the service. The configuration of an accessibility service is 
+contained in the <CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityServiceInfo.html">AccessibilityServiceInfo</A></CODE> 
+class. Your service can build and set a configuration using an instance of this 
+class and <CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html#setServiceInfo(android.accessibilityservice.AccessibilityServiceInfo)">setServiceInfo()</A></CODE> 
+at runtime. However, not all configuration options are available using this 
+method.</P>
+<P class="zhongwen">无障碍服务还必须提供一个配置，该配置指定了无障碍服务处理的无障碍事件类型和有关无障碍服务的附加信息。无障碍服务的配置被包含在<CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityServiceInfo.html">AccessibilityServiceInfo</A></CODE>类中。无障碍服务可以使用该类的实例创建一个配置，并在运行时使用<CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html#setServiceInfo(android.accessibilityservice.AccessibilityServiceInfo)">setServiceInfo()</A></CODE>设置此配置。但是，使用该方法并不能配置所有的配置项。</P>
+
+
+<P>Beginning with Android 4.0, you can include a <CODE>&lt;meta-data&gt;</CODE> 
+element in your manifest with a reference to a configuration file, which allows 
+you to set the full range of options for your accessibility service, as shown in 
+the following example:</P>
+<P class="zhongwen">从Android 4.0开始，可以在声明文件中包含一个<CODE>&lt;meta-data&gt;</CODE>元素，该元素指向一个配置文件。该配置文件允许开发者设置无障碍服务的所有内容，具体如下例所示：</P>
+
+<PRE>&lt;service android:name=".MyAccessibilityService"&gt;
+  ...
+  &lt;meta-data
+    android:name="android.accessibilityservice"
+    android:resource="@xml/accessibility_service_config" /&gt;
+&lt;/service&gt;
+</PRE>
+
+<P>This meta-data element refers to an XML file that you create in your 
+application’s resource directory 
+(<CODE>&lt;project_dir&gt;/res/xml/accessibility_service_config.xml</CODE>). The 
+following code shows example contents for the service configuration file:</P>
+<P class="zhongwen">该meta-data元素指向的是开发者在应用资源目录下创建的XML文件(<CODE>&lt;project_dir&gt;/res/xml/accessibility_service_config.xml</CODE>)。下面的代码展示了无障碍服务配置文件的样例：</P>
+
+<PRE>&lt;accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/accessibility_service_description"
+    android:packageNames="com.example.android.apis"
+    android:accessibilityEventTypes="typeAllMask"
+    android:accessibilityFlags="flagDefault"
+    android:accessibilityFeedbackType="feedbackSpoken"
+    android:notificationTimeout="100"
+    android:canRetrieveWindowContent="true"
+    android:settingsActivity="com.example.android.accessibility.ServiceSettingsActivity"
+/&gt;
+</PRE>
+
+<P>For more information about the XML attributes which can be used in the 
+accessibility service configuration file, follow these links to the reference 
+documentation:</P>
+<P class="zhongwen">无障碍服务配置文件使用的XML属性，点击以下链接查看更多信息：</P>
+
+<UL>
+  <LI><A href="http://developer.android.com/reference/android/R.styleable.html#AccessibilityService_description"><CODE>android:description</CODE></A></LI>
+  <LI><A href="http://developer.android.com/reference/android/R.styleable.html#AccessibilityService_packageNames"><CODE>android:packageNames</CODE></A></LI>
+  <LI><A href="http://developer.android.com/reference/android/R.styleable.html#AccessibilityService_accessibilityEventTypes"><CODE>android:accessibilityEventTypes</CODE></A></LI>
+  <LI><A href="http://developer.android.com/reference/android/R.styleable.html#AccessibilityService_accessibilityFlags"><CODE>android:accessibilityFlags</CODE></A></LI>
+  <LI><A href="http://developer.android.com/reference/android/R.styleable.html#AccessibilityService_accessibilityFeedbackType"><CODE>android:accessibilityFeedbackType</CODE></A></LI>
+  <LI><A href="http://developer.android.com/reference/android/R.styleable.html#AccessibilityService_notificationTimeout"><CODE>android:notificationTimeout</CODE></A></LI>
+  <LI><A href="http://developer.android.com/reference/android/R.styleable.html#AccessibilityService_canRetrieveWindowContent"><CODE>android:canRetrieveWindowContent</CODE></A></LI>
+  <LI><A href="http://developer.android.com/reference/android/R.styleable.html#AccessibilityService_settingsActivity"><CODE>android:settingsActivity</CODE></A></LI></UL>
+  
+ <P>For more information about which configuration settings can be dynamically 
+set at runtime, see the <CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityServiceInfo.html">AccessibilityServiceInfo</A></CODE> 
+reference documentation.</P> 
+
+<P class="zhongwen">哪些配置设置可以在运行时动态地设置的详细信息，请参阅<CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityServiceInfo.html">AccessibilityServiceInfo</A></CODE>参考文档。</P>
+
+<H2 id="register">注册无障碍事件</H2>
+
+<P>One of the most important functions of the accessibility service 
+configuration parameters is to allow you to specify what types of accessibility 
+events your service can handle. Being able to specify this information enables 
+accessibility services to cooperate with each other, and allows you as a 
+developer the flexibility to handle only specific events types from specific 
+applications. The event filtering can include the following criteria:</P>
+<P class="zhongwen">无障碍服务配置参数最重要的功能之一是允许开发者指定无障碍服务能处理的无障碍事件类型。成功指定该信息使无障碍服务间能相互合作，并允许开发者灵活地处理特定应用的特定事件类型。事件过滤可以包含以下规则：</P>
+
+  
+  <UL>
+  <LI>
+  <STRONG>Package Names</STRONG> - Specify the package names of applications 
+  whose accessibility events you want your service to handle. If this parameter 
+  is omitted, your accessibility service is considered available to service 
+  accessibility events for any application. This parameter can be set in the 
+  accessibility service configuration files with the 
+  <CODE>android:packageNames</CODE> attribute as a comma-separated list, or set 
+  using the <CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityServiceInfo.html#packageNames">AccessibilityServiceInfo.packageNames</A></CODE> 
+  member.
+  <div class="zhongwen"><STRONG>包名(PackageNames)：</STRONG> - 指定想要无障碍服务处理的无障碍事件的应用程序包名。如果省略该参数，无障碍服务将被视为服务于任何应用程序的无障碍事件。在无障碍服务配置文件中，该参数可使用<CODE>android:packageNames</CODE>属性被设置为一个逗号分隔的列表，或使用<CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityServiceInfo.html#packageNames">AccessibilityServiceInfo.packageNames</A></CODE>成员设置。</div></LI>
+  
+  <LI>
+  <STRONG>Event Types</STRONG> - Specify the types of accessibility events 
+  you want your service to handle. This parameter can be set in the 
+  accessibility service configuration files with the 
+  <CODE>android:accessibilityEventTypes</CODE> attribute as a list separated by 
+  the <CODE>|</CODE> character (for example 
+  <CODE>accessibilityEventTypes="typeViewClicked|typeViewFocused"</CODE>), or 
+  set using the <CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityServiceInfo.html#eventTypes">AccessibilityServiceInfo.eventTypes</A></CODE> 
+  member. 
+  <div class="zhongwen"><STRONG>事件类型(Event Types)</STRONG> - 指定开发者想要无障碍服务处理的无障碍事件的类型。在无障碍服务配置文件中，该参数可使用<CODE>android:accessibilityEventTypes</CODE>属性设置为由“ <CODE>|</CODE> ”分隔的列表（例如<CODE>accessibilityEventTypes="typeViewClicked|typeViewFocused"</CODE>），或者使用<CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityServiceInfo.html#eventTypes">AccessibilityServiceInfo.eventTypes</A></CODE>成员设置。</div>
+  </LI></UL>
+ 
+<P>When setting up your accessibility service, carefully consider what events 
+your service is able to handle and only register for those events. Since users 
+can activate more than one accessibility services at a time, your service must 
+not consume events that it is not able to handle. Remember that other services 
+may handle those events in order to improve a user's experience.</P>
+<P class="zhongwen">当创建无障碍服务时，开发者需要全面考虑无障碍服务能处理的无障碍事件，并只注册这些事件。因为用户可能同时激活多个无障碍服务，开发者创建的服务不能浪费在该服务不能处理的事件上。记住，其他的服务也可能会为了提供用户体验来处理这些事件。</P>
+
+<P class="note"><STRONG>Note:</STRONG> The Android framework dispatches 
+accessibility events to more than one accessibility service if the services 
+provide different <A href="http://developer.android.com/reference/android/R.styleable.html#AccessibilityService_accessibilityFeedbackType">
+feedback types</A>. However, if two or more services provide the same feedback 
+type, then only the first registered service receives the event.</P>
+<P class="note"><div class="zhongwen"><STRONG>注：</STRONG>如果服务提供不同反馈类型(<A href="http://developer.android.com/reference/android/R.styleable.html#AccessibilityService_accessibilityFeedbackType">
+feedback types</A>)，Android框架可以为无障碍事件分派一个以上的无障碍服务。但是，如果为两个或更多的服务提供相同的反馈类型，只有第一个注册的服务才能接收事件。</div></P>
+
+
+<H2 id="methods">无障碍服务方法</H2>
+
+<P>An accessibility service must extend the <CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html">AccessibilityService</A></CODE> 
+class and override the following methods from that class. These methods are 
+presented in the order in which they are called by the Android system, from when 
+the service is started (<CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html#onServiceConnected()">onServiceConnected()</A></CODE>),
+ while it is running (<CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html#onAccessibilityEvent(android.view.accessibility.AccessibilityEvent)">onAccessibilityEvent()</A></CODE>, 
+<CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html#onInterrupt()">onInterrupt()</A></CODE>) 
+to when it is shut down (<CODE><A href="http://developer.android.com/reference/android/app/Service.html#onUnbind(android.content.Intent)">onUnbind()</A></CODE>).</P>
+<P class="zhongwen">一个无障碍服务必须继承<CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html">AccessibilityService</A></CODE>类，重写该类的以下方法。这些方法被Android系统调用时按顺序呈现，从服务被启动（<CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html#onServiceConnected()">onServiceConnected()</A></CODE>），一直运行（<CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html#onAccessibilityEvent(android.view.accessibility.AccessibilityEvent)">onAccessibilityEvent()</A></CODE>、<CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html#onInterrupt()">onInterrupt()</A></CODE>），到服务被关闭（<CODE><A href="http://developer.android.com/reference/android/app/Service.html#onUnbind(android.content.Intent)">onUnbind()</A></CODE>）。</P>
+
+  <UL>
+  <LI><CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html#onServiceConnected()">onServiceConnected()</A></CODE> 
+  
+  - (optional) This system calls this method when it successfully connects to
+   your accessibility service. Use this method to do any one-time setup steps 
+  for your service, including connecting to user feedback system services, such 
+  as the audio manager or device vibrator. If you want to set the configuration 
+  of your service at runtime or make one-time adjustments, this is a convenient 
+  location from which to call <CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html#setServiceInfo(android.accessibilityservice.AccessibilityServiceInfo)">setServiceInfo()</A></CODE>.
+  <div class="zhongwen">
+-（可选）当系统成功连接到无障碍服务时，调用该方法。使用该方法为无障碍服务提供任何一次性的启动步骤，包含连接到用户反馈系统服务，例如音频管理或设备震动。如果想要在应用运行时设置无障碍服务的配置或做一次性的调整，可以在该方法中调用<CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html#setServiceInfo(android.accessibilityservice.AccessibilityServiceInfo)">setServiceInfo()</A></CODE>来实现。</div></LI>
+
+  <LI><CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html#onAccessibilityEvent(android.view.accessibility.AccessibilityEvent)">onAccessibilityEvent()</A></CODE> 
+  
+ - (required) This method is called back by the system when it detects an 
+  <CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityEvent.html">AccessibilityEvent</A></CODE> 
+  that matches the event filtering parameters specified by your accessibility 
+  service. For example, when the user clicks a button or focuses on a user 
+  interface control in an application for which your accessibility service is 
+  providing feedback. When this happens, the system calls this method, passing 
+  the associated <CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityEvent.html">AccessibilityEvent</A></CODE>, 
+  which the service can then interpret and use to provide feedback to the user. 
+  This method may be called many times over the lifecycle of your service.
+  <div class="zhongwen">
+  -（必选）当系统检测到一个符合无障碍服务设定的无障碍事件过滤参数的<CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityEvent.html">事件</A></CODE>时，该方法被系统回调。例如，当用户在应用程序中点击一个按钮或聚焦一个用户界面控件时，你的无障碍服务会为此应用程序提供反馈。此时，系统调用这个方法，传递相关联的<CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityEvent.html">无障碍事件</A></CODE>，无障碍服务就可以翻译和使用该事件为用户提供反馈。在无障碍服务的生命周期中，该方法会被调用多次。</div></LI>
+  
+  <LI><CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html#onInterrupt()">onInterrupt()</A></CODE> 
+  
+  - (required) This method is called when the system wants to interrupt the 
+  feedback your service is providing, usually in response to a user action such 
+  as moving focus to a different control. This method may be called many times 
+  over the lifecycle of your service.
+  <div class="zhongwen">- （必选）当系统想要打断无障碍服务提供的反馈时该方法被调用，一般情况下是响应用户操作，如移动焦点到一个不同的控件。在无障碍服务的生命周期中，该方法会被调用很多次。</div></LI>
+  <LI><CODE><A href="http://developer.android.com/reference/android/app/Service.html#onUnbind(android.content.Intent)">onUnbind()</A></CODE>
+  
+  - (optional) This method is called when the system is about to shutdown the 
+  accessibility service. Use this method to do any one-time shutdown procedures, 
+  including de-allocating user feedback system services, such as the audio 
+  manager or device vibrator.
+ <div class="zhongwen"> 
+-（可选）当系统想要关闭无障碍服务的时候，调用该方法。使用该方法去完成一次性的关闭进程，包括解除分配用户反馈系统服务，例如音频管理或者设备震动。</div>
+</LI></UL>
+  
+ <P>These callback methods provide the basic structure for your accessibility 
+service. It is up to you to decide on how to process data provided by the 
+Android system in the form of <CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityEvent.html">AccessibilityEvent</A></CODE> 
+objects and provide feedback to the user. For more information about getting 
+information from an accessibility event, see the <A href="http://developer.android.com/training/accessibility/service.html">Implementing 
+Accessibility</A> training.</P>
+<P class="zhongwen">这些回调方法为无障碍服务提供基本架构。在<CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityEvent.html">AccessibilityEvent</A></CODE>对象中怎样处理由Android系统提供的数据并为用户提供反馈，是开发者自己决定的。获取无障碍事件信息的更多内容，详见实现无障碍(<A href="http://developer.android.com/training/accessibility/service.html">Implementing 
+Accessibility</A>）培训。</P>
+
+
+<H2 id="event-details">获得事件详情</H2>
+
+ <P>The Android system provides information to accessibility services about the 
+user interface interaction through <CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityEvent.html">AccessibilityEvent</A></CODE> 
+objects. Prior to Android 4.0, the information available in an accessibility 
+event, while providing a significant amount of detail about a user interface 
+control selected by the user, offered limited contextual information. In many 
+cases, this missing context information might be critical to understanding the
+ meaning of the selected control.</P>
+ <P class="zhongwen">Android系统通过<CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityEvent.html">AccessibilityEvent</A></CODE>对象为无障碍服务提供用户界面交互的信息。在Android4.0之前，可从无障碍事件中获得信息，且无障碍事件能够提供用户所选择的界面控件的大量详细信息，但这些信息仅包含有限的上下文信息。在很多情况下，丢失的上下文信息可能是理解已选定控件的意义的关键。</P>
+ 
+<P>An example of an interface where context is critical is a calendar or day 
+planner. If the user selects a 4:00 PM time slot in a Monday to Friday day list 
+and the accessibility service announces “4 PM”, but does not announce the 
+weekday name, the day of the month, or the month name, the resulting feedback is 
+confusing. In this case, the context of a user interface control is critical to 
+a user who wants to schedule a meeting.</P>
+<P class="zhongwen">一个界面的上下文是很关键，例如，日历或每日计划。如果用户选择周一到周五的下午四点，无障碍服务告知下午四点，但是没有说明是哪个工作日，哪个月的哪一天，反馈结果就会令人非常困扰。在这种情况下，用户界面控件的上下文对那些做时间规划的人非常关键。</P>
+
+<P>Android 4.0 significantly extends the amount of information that an 
+accessibility service can obtain about an user interface interaction by 
+composing accessibility events based on the view hierarchy. A view hierarchy is 
+the set of user interface components that contain the component (its parents) 
+and the user interface elements that may be contained by that component (its 
+children). In this way, the Android system can provide much richer detail about 
+accessibility events, allowing accessibility services to provide more useful 
+feedback to users.</P>
+<P class="zhongwen">Android4.0较大的扩展了无障碍服务能获取到的关于用户界面交互的信息量，这些信息是通过基于视图层次组合的无障碍事件提供。视图层次是用户界面元素的组合，该组合包含组件（父亲）和可能包含在其中的子元素（孩子）。因此，Android系统可以提供无障碍事件的更丰富的详细信息，允许无障碍服务为用户提供更多有用的反馈。</P>
+
+<P>An accessibility service gets information about an user interface event 
+through an <CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityEvent.html">AccessibilityEvent</A></CODE> 
+passed by the system to the service’s <CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html#onAccessibilityEvent(android.view.accessibility.AccessibilityEvent)">onAccessibilityEvent()</A></CODE> 
+callback method. This object provides details about the event, including the
+ type of object being acted upon, its descriptive text and other details. 
+Starting in Android 4.0 (and supported in previous releases through the <CODE><A 
+href="http://developer.android.com/reference/android/support/v4/view/accessibility/AccessibilityEventCompat.html">AccessibilityEventCompat</A></CODE> 
+object in the Support Library), you can obtain additional information about the 
+event using these calls:</P>
+
+<P class="zhongwen">系统将<CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityEvent.html">AccessibilityEvent</A></CODE>传递到无障碍服务的<CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html#onAccessibilityEvent(android.view.accessibility.AccessibilityEvent)">onAccessibilityEvent()</A></CODE>回调方法，因此，无障碍服务获得用户交互事件的信息。AccessibilityEvent会提供事件的详细信息，包含AccessibilityEvent的执行类型、描述文本和其他信息。从Android4.0开始（Android4.0以前的支持情况详见支持库（Support Library）中的<CODE><A 
+href="http://developer.android.com/reference/android/support/v4/view/accessibility/AccessibilityEventCompat.html">AccessibilityEventCompat</A></CODE>），可以通过调用以下方法获得更多信息。</P>
+
+  
+  <UL>
+  <LI><CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityEvent.html#getRecordCount()">AccessibilityEvent.getRecordCount()</A></CODE> 
+ 和<CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityEvent.html#getRecord(int)">getRecord(int)</A></CODE> 
+ 
+ - These methods allow you to retrieve the set of <CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityRecord.html">AccessibilityRecord</A></CODE> 
+  objects which contributed to the <CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityEvent.html">AccessibilityEvent</A></CODE> 
+  passed to you by the system. This level of detail provides more context for 
+  the event that triggered your accessibility service.
+ 
+ <div class="zhongwen">
+  -这些方法允许开发者获得一组<CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityRecord.html">AccessibilityRecord</A></CODE>对象，该对象作为<CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityEvent.html">AccessibilityEvent</A></CODE>的一部分，通过系统传递给开发者。该详情的级别为无障碍服务触发的事件提供了更多上下文信息。</div></LI>
+  
+  <LI><CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityRecord.html#getSource()">AccessibilityEvent.getSource()</A></CODE> 
+  
+   - This method returns an <CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html">AccessibilityNodeInfo</A></CODE> 
+  object. This object allows you to request view layout hierarchy (parents and 
+  children) of the component that originated the accessibility event. This 
+  feature allows an accessibility service to investigate the full context of an 
+  event, including the content and state of any enclosing views or child views. 
+  <div class="zhongwen">
+  - 该方法返回<CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html">AccessibilityNodeInfo</A></CODE>对象。该对象允许开发者请求查看触发无障碍事件的组件视图布局层次（父亲和孩子）。该特性允许无障碍服务访问事件的所有上下文内容，包含任何闭合视图或子视图的内容和状态。</div>
+  
+    <P class="caution"><STRONG>Important:</STRONG> The ability to investigate the 
+  view hierarchy from an <CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityEvent.html">AccessibilityEvent</A></CODE> 
+  potentially exposes private user information to your accessibility service. 
+  For this reason, your service must request this level of access through the 
+  accessibility <A href="http://developer.android.com/guide/topics/ui/accessibility/services.html#service-config">service 
+  configuration XML</A> file, by including the 
+  <CODE>canRetrieveWindowContent</CODE> attribute and setting it to 
+  <CODE>true</CODE>. If you do not include this setting in your service 
+  configuration xml file, calls to <CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityRecord.html#getSource()">getSource()</A></CODE> 
+  fail.</P>
+  <P class="caution"><div class="zhongwen"><STRONG>重要:</STRONG>从一个<CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityEvent.html">AccessibilityEvent</A></CODE>访问视图层次的能力会将用户私人信息潜在的暴露给无障碍服务。基于该原因，无障碍服务必须在<A href="services.htm#service-config">无障碍服务配置XML</A>文件请求访问权限，该文件中需要包含<CODE>canRetrieveWindowContent</CODE>属性并将其设置为<CODE>true</CODE>。如果XML文件不包含这些设置，调用<CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityRecord.html#getSource()">getSource()</A></CODE>将会失败。</div>
+</P>
+
+
+ <P class="note"><STRONG>Note:</STRONG> In Android 4.1 (API Level 16) and 
+  higher, the <CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityRecord.html#getSource()">getSource()</A></CODE> 
+  method, as well as <CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html#getChild(int)">AccessibilityNodeInfo.getChild()</A></CODE> 
+  and <CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html#getParent()">getParent()</A></CODE>, 
+  return only view objects that are considered important for accessibility 
+  (views that draw content or respond to user actions). If your service requires 
+  all views, it can request them by setting the <CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityServiceInfo.html#flags">flags</A></CODE> 
+  member of the service's <CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityServiceInfo.html">AccessibilityServiceInfo</A></CODE> 
+  instance to <CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityServiceInfo.html#FLAG_INCLUDE_NOT_IMPORTANT_VIEWS">FLAG_INCLUDE_NOT_IMPORTANT_VIEWS</A></CODE>.</P>
+
+  <P class="note"><div class="zhongwen"> <STRONG>注意：</STRONG>在Android4.1（API级别16）和以后的版本中，<CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityRecord.html#getSource()">getSource()</A></CODE>、<CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html#getChild(int)">AccessibilityNodeInfo.getChild()</A></CODE>和<CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html#getParent()">getParent()</A></CODE>方法，只返回一个对无障碍来说相当重要的视图对象（这些视图画有内容，或者响应用户操作）。如果无障碍服务针对所有视图，可以通过设置无障碍服务的<CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityServiceInfo.html">AccessibilityServiceInfo</A></CODE><CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityServiceInfo.html#flags">flags</A></CODE>成员来请求，详见flag中的非重要视图（<CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityServiceInfo.html#FLAG_INCLUDE_NOT_IMPORTANT_VIEWS">FLAG_INCLUDE_NOT_IMPORTANT_VIEWS</A></CODE>）。</div></P></LI></UL>
+ 
+
+<H2 id="act-for-users">为用户采取措施</H2>
+
+<P>Starting with Android 4.0 (API Level 14), accessibility services can act on 
+behalf  of users, including changing the input focus and selecting (activating) 
+user interface elements.  In Android 4.1 (API Level 16) the range of actions has 
+been expanded to include scrolling lists  and interacting with text fields. 
+Accessibility services can  also take global actions, such as navigating to the 
+Home screen, pressing the Back button, opening  the notifications screen and 
+recent applications list. Android 4.1 also includes a new type of  focus, 
+<EM>Accessibilty Focus</EM>, which makes all visible elements selectable by an  
+accessibility service.</P>
+<P class="zhongwen">从Android4.0（API级别14）开始，无障碍服务可以代表用户操作，包含改变输入焦点和选择（激活）用户界面元素。在Android4.1（API级别16），操作的范围被扩展至包含滚动列表和与文本域交互。无障碍服务也可采取全局操作，如导航到主界面、按返回按钮、打开屏幕通知和最近应用列表。Android4.1也包含新焦点类型，<EM>无障碍焦点</EM>，该焦点类型可让所有视觉元素能够被无障碍服务所选择。</P>
+
+<P>These new capabilities make it possible for developers of accessibility 
+services to create  alternative navigation modes such as   <A href="http://developer.android.com/tools/testing/testing_accessibility.html#test-gestures">gesture 
+navigation</A>,  and give users with disabilities improved control of their 
+Android devices.</P>
+
+<P class="zhongwen">这些新的能力让开发者能够开发替代导航模式，如<A href="http://developer.android.com/tools/testing/testing_accessibility.html#test-gestures">手势导航</A>，提高残障用户对Android设备的控制。</P>
+
+<H3 id="detect-gestures">手势监听</H3>
+
+<P>Accessibility services can listen for specific gestures and respond by taking 
+action on behalf  of a user. This feature, added in Android 4.1 (API Level 16), 
+and requires that your  accessibility service request activation of the Explore 
+by Touch feature. Your service can  request this activation by setting the   
+<CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityServiceInfo.html#flags">flags</A></CODE> 
+member of the service’s   <CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityServiceInfo.html">AccessibilityServiceInfo</A></CODE> 
+instance to   <CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityServiceInfo.html#FLAG_REQUEST_TOUCH_EXPLORATION_MODE">FLAG_REQUEST_TOUCH_EXPLORATION_MODE</A></CODE>, 
+ as shown in the following example.   </P>
+
+ <P class="zhongwen">无障碍服务可以监听特定手势，并代表用户响应。该特性被添加在Android4.1（API级别16）版本中，要求无障碍服务激活触摸浏览特性。无障碍服务可以通过设置<CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityServiceInfo.html">AccessibilityServiceInfo</A></CODE>实例的<CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityServiceInfo.html#flags">flags</A></CODE>成员为<CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityServiceInfo.html#FLAG_REQUEST_TOUCH_EXPLORATION_MODE">FLAG_REQUEST_TOUCH_EXPLORATION_MODE</A></CODE>，请求该特性的激活，样例如下所示：
+</P>
+ 
+<PRE>public class MyAccessibilityService extends AccessibilityService {
+    @Override
+    public void onCreate() {
+        getServiceInfo().flags = AccessibilityServiceInfo.FLAG_REQUEST_TOUCH_EXPLORATION_MODE;
+    }
+    ...
+}
+</PRE>
+
+<P>Once your service has requested activation of Explore by Touch, the user must 
+allow the  feature to be turned on, if it is not already active. When this 
+feature is active, your service  receives notification of accessibility gestures 
+through your service's   <CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html#onGesture(int)">onGesture()</A></CODE> 
+callback method  and can respond by taking actions for the user.</P>
+
+<P class="zhongwen">一旦无障碍服务请求激活触摸浏览，如果该特性未打开，用户必须允许打开该特性。当该特性激活，无障碍服务将会通过<CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html#onGesture(int)">onGesture()</A></CODE>回调方法接收无障碍手势的通知，并且为用户响应操作。</P>
+
+
+<H3 id="using-actions">使用无障碍操作</H3>
+
+<P>Accessibility services can take action on behalf of users to make interacting 
+with applications  simpler and more productive. The ability of accessibility 
+services to perform actions was added  in Android 4.0 (API Level 14) and 
+significantly expanded with Android 4.1 (API Level 16).</P>
+
+<p class="zhongwen">无障碍服务可以代替用户操作，让用户与应用的交互更简单有效。无障碍服务的这个能力在Android4.0（API级别14）被加入，在Android4.1（API级别16）被显著扩展。</P>
+
+<P>In order to take actions on behalf of users, your accessibility service must  
+ <A href="http://developer.android.com/guide/topics/ui/accessibility/services.html#register">register</A> 
+to receive events from a few or many applications and request  permission to 
+view the content of applications by setting the   <A href="http://developer.android.com/reference/android/R.styleable.html#AccessibilityService_canRetrieveWindowContent"><CODE>android:canRetrieveWindowContent</CODE></A> 
+to <CODE>true</CODE> in the   <A href="http://developer.android.com/guide/topics/ui/accessibility/services.html#service-config">service 
+configuration file</A>. When events are received by your  service, it can then 
+retrieve the   <CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html">AccessibilityNodeInfo</A></CODE> 
+object from the event using   <CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityRecord.html#getSource()">getSource()</A></CODE>. 
+ With the <CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html">AccessibilityNodeInfo</A></CODE> 
+object, your service can then  explore the view hierarchy to determine what 
+action to take and then act for the user using   <CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html#performAction(int)">performAction()</A></CODE>.</P>
+<P class="zhongwen">为了代替用户操作，无障碍服务必须<A href="http://developer.android.com/guide/topics/ui/accessibility/services.html#register">注册</A>来接收来自某些或者更多应用中的事件，并在无障碍<A href="services.htm#service-config">服务配置文件</A>中设置<A href="http://developer.android.com/reference/android/R.styleable.html#AccessibilityService_canRetrieveWindowContent"><CODE>android:canRetrieveWindowContent</CODE></A>属性为<CODE>true</CODE>，来请求查看应用程序的内容。当接收到事件，无障碍服务可以使用<CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityRecord.html#getSource()">getSource()</A></CODE>方法在事件中检索<CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html">AccessibilityNodeInfo</A></CODE>对象。使用<CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html">AccessibilityNodeInfo</A></CODE>对象你的无障碍服务可以浏览视图层次来判定采取什么操作并使用<CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html#performAction(int)">performAction()</A></CODE>为用户操作。</P>
+
+
+<PRE>public class MyAccessibilityService extends AccessibilityService {
+
+    @Override
+    public void onAccessibilityEvent(AccessibilityEvent event) {
+       // 获得事件的资源节点
+        AccessibilityNodeInfo nodeInfo = event.getSource();
+
+        //使用事件和节点信息判定为用户执行什么样的操作。
+        nodeInfo.performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD);
+
+        //循环nodeInfo对象
+        nodeInfo.recycle();
+    }
+    ...
+}
+</PRE>
+ 
+ 
+<P>The <CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html#performAction(int)">performAction()</A></CODE> 
+method  allows your service to take action within an application. If your 
+service needs to perform a  global action such as navigating to the Home screen, 
+pressing the Back button, opening the  notifications screen or recent 
+applications list, then use the   <CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html#performGlobalAction(int)">performGlobalAction()</A></CODE> 
+ method.</P>
+<P class="zhongwen"><CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html#performAction(int)">performAction()</A></CODE>方法允许无障碍服务在应用中执行操作。如果无障碍服务需要去执行全局操作，例如导航到主屏幕、按返回键、打开屏幕通知或者最近应用列表等，使用<CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html#performGlobalAction(int)">performGlobalAction()</A></CODE>方法。
+</P>
+ 
+
+<H3 id="focus-types">使用焦点模式</H3>
+
+<P>Android 4.1 (API Level 16) introduces a new type of user interface focus 
+called <EM>Accessibility  Focus</EM>. Accessibility services can used this type 
+of focus to select any visible user  interface element and act on it. This focus 
+type is different from the more well known <EM>Input  Focus</EM>, which 
+determines what on-screen user interface element receives input when a user  
+types characters, presses <STRONG>Enter</STRONG> on a keyboard or pushes the 
+center button of a  D-pad control.</P>
+<P class="zhongwen">Android4.1（API级别16）引入了一种新的用户界面焦点，被称为<EM>无障碍焦点（Accessibility Focus）</EM>。这种类型的焦点可用于在无障碍服务中，选择任何视觉用户界面元素并操作该元素。该焦点类型不同于<EM>输入焦点（Input Focus）</EM>。当用户输入字符，点击键盘上的<STRONG>enter</STRONG>键或D-pad控制器的中心按钮时，输入焦点决定屏幕上哪个元素接收输入。</P>
+
+<P>Accessibility Focus is completely separate and independent from Input Focus. 
+In fact, it is  possible for one element in a user interface to have Input Focus 
+while another element has  Accessibility Focus. The purpose of Accessibility 
+Focus is to provide accessibility services with  a method of interacting with 
+any visible element on a screen, regardless of whether or not the  element is 
+input-focusable from a system perspective. You can see accessibility focus in 
+action by  testing accessibility gestures. For more information about testing 
+this feature, see   <A href="http://developer.android.com/tools/testing/testing_accessibility.html#test-gestures">Testing 
+gesture  navigation</A>.</P>
+<P class="zhongwen">无障碍焦点与输入焦点是完全分开和独立的。事实上，用户界面中的一个元素有输入焦点，同时另一个元素有无障碍焦点，这种情况是可能出现的。无障碍焦点的目的是，为无障碍服务提供一种与屏幕上视觉元素进行交互的方法，而不管该元素是否是系统层面的可输入聚焦元素。开发者可以在无障碍手势测试中看到无障碍焦点。更多关于该特性的信息，详见<A href="http://developer.android.com/tools/testing/testing_accessibility.html#test-gestures">测试手势导航</A>。</P>
+
+<P class="note"><STRONG>Note:</STRONG> Accessibility services that use 
+Accessibility Focus are responsible for  synchronizing the current Input Focus 
+when an element is capable of this type of focus. Services  that do not 
+synchronize Input Focus with Accessibility Focus run the risk of causing 
+problems in  applications that expect input focus to be in a specific location 
+when certain actions are taken.   </P>
+
+<P class="note">
+<div class="zhongwen"> <STRONG>注：</STRONG>当元素具有输入焦点，使用无障碍焦点的无障碍服务有责任整合当前输入焦点。如果服务没有整合输入焦点和无障碍焦点，有可能会在应用中引起问题，问题是当采用特定操作时，需要将输入焦点固定在特定的位置。</div></P>
+
+<P>An accessibility service can determine what user interface element has Input 
+Focus or  Accessibility Focus using the <CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html#findFocus(int)">AccessibilityNodeInfo.findFocus()</A></CODE> 
+method. You can also search for elements that can be selected  with Input Focus 
+using the   <CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html#focusSearch(int)">focusSearch()</A></CODE> 
+method.  Finally, your accessibility service can set Accessibility Focus using 
+the   <CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html#performAction(int)">performAction(AccessibilityNodeInfo.ACTION_SET_ACCESSIBILITY_FOCUS)</A></CODE> 
+method.</P>
+<P class="zhongwen">无障碍服务可以使用<CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html#findFocus(int)">AccessibilityNodeInfo.findFocus()</A></CODE>方法来判定哪些用户界面元素有输入焦点或无障碍焦点，也可以使用<CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html#focusSearch(int)">focusSearch()</A></CODE>方法来检索哪些元素可以用输入焦点选择。最后，可以使用<CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html#performAction(int)">performAction(AccessibilityNodeInfo.ACTION_SET_ACCESSIBILITY_FOCUS)</A></CODE>方法来设置无障碍焦点。</P>
+
+<H2 id="examples">样例代码</H2>
+<P>The API Demo project contains two samples which can be used as a starting 
+point for generating accessibility services
+ (<CODE>&lt;sdk&gt;/samples/&lt;platform&gt;/ApiDemos/src/com/example/android/apis/accessibility</CODE>): 
+<P class="zhongwen">API Demo项目包含两个样例，可以用来作为生成无障碍服务的起点
+ (<CODE>&lt;sdk&gt;/samples/&lt;platform&gt;/ApiDemos/src/com/example/android/apis/accessibility</CODE>): 
+</P>
+  
+  <UL>
+  <LI><A href="http://developer.android.com/resources/samples/ApiDemos/src/com/example/android/apis/accessibility/ClockBackService.html">ClockBackService</A> 
+  
+     - This service is based on the original implementation of <CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html">AccessibilityService</A></CODE> 
+  and can be used as a base for developing basic accessibility services that are 
+  compatible with Android 1.6 (API Level 4) and higher.
+  <div class="zhongwen">
+  -该服务是以<CODE><A href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html">AccessibilityService</A></CODE>的原始实现为基础，可以用来作为开发基层无障碍服务的参考，适用于Android1.6（API级别4）和以后的版本。</div.
+  
+	</LI>
+	
+  <LI><A href="http://developer.android.com/resources/samples/ApiDemos/src/com/example/android/apis/accessibility/TaskBackService.html">TaskBackService</A> 
+  
+- This service is based on the enhanced accessibility APIs introduced in 
+  Android 4.0 (API Level 14). However, you can use the Android <A href="http://developer.android.com/tools/support-library/index.html">Support
+   Libary</A> to substitute classes introduced in later API levels (e.g., 
+  <CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityRecord.html">AccessibilityRecord</A></CODE>, 
+  <CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html">AccessibilityNodeInfo</A></CODE>
+   ) with equivalent support package classes (e.g., <CODE><A href="http://developer.android.com/reference/android/support/v4/view/accessibility/AccessibilityRecordCompat.html">AccessibilityRecordCompat</A></CODE>, 
+  <CODE><A href="http://developer.android.com/reference/android/support/v4/view/accessibility/AccessibilityNodeInfoCompat.html">AccessibilityNodeInfoCompat</A></CODE>
+   ) to make this example work with API versions back to Android 1.6 (API Level 
+  4).
+  
+  <div class="zhongwen">
+ -该服务基于升级版无障碍APIs，该APIs引进于Android4.0（API级别14）。但是，可以使用Android 支持库（<A href="http://developer.android.com/tools/support-library/index.html">Support
+   Libary</A>）中的同等支持类包（例如，<CODE><A href="http://developer.android.com/reference/android/support/v4/view/accessibility/AccessibilityRecordCompat.html">AccessibilityRecordCompat</A></CODE>, <CODE><A href="http://developer.android.com/reference/android/support/v4/view/accessibility/AccessibilityNodeInfoCompat.html">AccessibilityNodeInfoCompat</A></CODE>）代替后面API级别中引进的类（例如，<CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html">AccessibilityNodeInfo</A></CODE>, <CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html">AccessibilityNodeInfo</A></CODE>），让这些样例可以作用于Android1.6（API级别4）。</div>
+</LI></UL>
+  
+  <!--正文完-->
+  </DIV></DIV><!-- end jd-content --> 
+<DIV class="wrap">
+<DIV class="dac-footer">
+<DIV class="cols dac-footer-main">
+<DIV class="col-1of2"><A class="dac-footer-getnews" href="javascript:;" 
+data-modal-toggle="newsletter">Get news &amp; tips <SPAN class="dac-fab dac-primary"><I 
+class="dac-sprite dac-mail"></I></SPAN></A>       </DIV>
+<DIV class="col-1of2 dac-footer-reachout">
+<DIV class="dac-footer-contact"><A class="dac-footer-contact-link" href="http://android-developers.blogspot.com/">Blog</A> 
+          <A class="dac-footer-contact-link" href="http://developer.android.com/support.html">Support</A> 
+        </DIV>
+<DIV class="dac-footer-social"><A class="dac-fab dac-footer-social-link" href="https://www.youtube.com/user/androiddevelopers"><I 
+class="dac-sprite dac-youtube"></I></A>           <A class="dac-fab dac-footer-social-link" 
+href="https://plus.google.com/+AndroidDevelopers"><I class="dac-sprite dac-gplus"></I></A> 
+          <A class="dac-fab dac-footer-social-link" href="https://twitter.com/AndroidDev"><I 
+class="dac-sprite dac-twitter"></I></A>         </DIV></DIV></DIV>
+<HR class="dac-footer-separator">
+
+<P class="dac-footer-copyright">          Except as noted, this content is  
+licensed under <A href="http://creativecommons.org/licenses/by/2.5/">  Creative 
+Commons Attribution 2.5</A>. For details and  restrictions, see the <A href="http://developer.android.com/license.html">Content 
+ License</A>.       </P>
+<P class="dac-footer-links"><A href="http://developer.android.com/about/index.html">About 
+Android</A>       <A 
+href="http://developer.android.com/auto/index.html">Auto</A>       <A href="http://developer.android.com/tv/index.html">TV</A> 
+      <A href="http://developer.android.com/wear/index.html">Wear</A>       <A 
+href="http://developer.android.com/legal.html">Legal</A>       <SPAN class="locales" 
+id="language"><SELECT name="language" onchange="changeLangPref(this.value, true)"><OPTION 
+   value="en">English</OPTION>           <OPTION 
+  value="es">Español</OPTION>           <OPTION value="in">Bahasa 
+  Indonesia</OPTION>           <OPTION value="ja">日本語</OPTION>           <OPTION 
+  value="ko">한국어</OPTION>           <OPTION value="pt-br">Português 
+  Brasileiro</OPTION>           <OPTION value="ru">Русский</OPTION>           
+  <OPTION value="vi">tiếng Việt</OPTION>           <OPTION 
+  value="zh-cn" selected="selected">中文（简体)</OPTION>           <OPTION value="zh-tw">中文（繁體)</OPTION>  
+         </SELECT>       </SPAN></P></DIV></DIV><!-- end footer --> 
+<DIV class="dac-modal newsletter" data-swap="" data-newsletter="" data-modal="newsletter">
+<DIV class="dac-modal-container">
+<DIV class="dac-modal-window"><HEADER class="dac-modal-header"><BUTTON class="dac-modal-header-close" 
+data-modal-toggle=""><I class="dac-sprite dac-close"></I></BUTTON>         
+<DIV class="dac-swap" data-swap-container=""><SECTION class="dac-swap-section dac-active dac-down">
+<H2 class="norule dac-modal-header-title">Get the latest Android developer news 
+and tips that will help you find success on Google Play.</H2>
+<P class="dac-modal-header-subtitle">* Required Fields</P></SECTION><SECTION 
+class="dac-swap-section dac-up">
+<H2 class="norule dac-modal-header-title">Hooray!</H2></SECTION></DIV></HEADER>
+<DIV class="dac-swap" data-swap-container=""><SECTION class="dac-swap-section dac-active dac-left">
+<FORM class="dac-form" action="https://docs.google.com/forms/d/1QgnkzbEJIDu9lMEea0mxqWrXUJu0oBCLD7ar23V0Yys/formResponse" 
+method="post" target="dac-newsletter-iframe"><SECTION class="dac-modal-content">
+<FIELDSET class="dac-form-fieldset">
+<DIV class="cols">
+<DIV class="col-1of2 newsletter-leftCol">
+<DIV class="dac-form-input-group"><LABEL class="dac-form-floatlabel" for="newsletter-full-name">Full 
+name</LABEL><INPUT name="entry.1357890476" class="dac-form-input" id="newsletter-full-name" required="" type="text"><SPAN 
+class="dac-form-required">*</SPAN></DIV>
+<DIV class="dac-form-input-group"><LABEL class="dac-form-floatlabel" for="newsletter-email">Email 
+address</LABEL><INPUT name="entry.472100832" class="dac-form-input" id="newsletter-email" required="" type="email"><SPAN 
+class="dac-form-required">*</SPAN></DIV></DIV>
+<DIV class="col-1of2 newsletter-rightCol">
+<DIV class="dac-form-input-group"><LABEL class="dac-form-floatlabel" for="newsletter-company">Company 
+/ developer 
+name</LABEL><INPUT name="entry.1664780309" class="dac-form-input" id="newsletter-company" type="text"></DIV>
+<DIV class="dac-form-input-group"><LABEL class="dac-form-floatlabel" for="newsletter-play-store">One 
+of your Play Store app URLs</LABEL><INPUT name="entry.47013838" class="dac-form-input" id="newsletter-play-store" required="" type="url"><SPAN 
+class="dac-form-required">*</SPAN></DIV></DIV></DIV></FIELDSET>
+<FIELDSET class="dac-form-fieldset">
+<DIV class="cols">
+<DIV class="col-1of2 newsletter-leftCol"><LEGEND class="dac-form-legend">Which 
+best describes your business:<SPAN class="dac-form-required">*</SPAN>            
+         </LEGEND>
+<DIV class="dac-form-radio-group"><INPUT name="entry.1796324055" class="dac-form-radio" 
+id="newsletter-business-type-app" required="" type="radio" value="Apps">         
+              <LABEL class="dac-form-radio-button" for="newsletter-business-type-app"></LABEL> 
+                      <LABEL class="dac-form-label" for="newsletter-business-type-app">Apps</LABEL> 
+                    </DIV>
+<DIV class="dac-form-radio-group"><INPUT name="entry.1796324055" class="dac-form-radio" 
+id="newsletter-business-type-games" required="" type="radio" value="Games">      
+                 <LABEL class="dac-form-radio-button" for="newsletter-business-type-games"></LABEL> 
+                      <LABEL class="dac-form-label" for="newsletter-business-type-games">Games</LABEL> 
+                    </DIV>
+<DIV class="dac-form-radio-group"><INPUT name="entry.1796324055" class="dac-form-radio" 
+id="newsletter-business-type-appsgames" required="" type="radio" value="Apps and Games"> 
+                      <LABEL class="dac-form-radio-button" for="newsletter-business-type-appsgames"></LABEL> 
+                      <LABEL class="dac-form-label" for="newsletter-business-type-appsgames">Apps 
+&amp; Games</LABEL>                     </DIV></DIV>
+<DIV class="col-1of2 newsletter-rightCol newsletter-checkboxes">
+<DIV class="dac-form-radio-group">
+<DIV class="dac-media">
+<DIV class="dac-media-figure"><INPUT name="entry.732309842" class="dac-form-checkbox" 
+id="newsletter-add" required="" type="checkbox" value="Add me to the mailing list for the monthly newsletter and occasional emails about development and Google Play opportunities."> 
+                          <LABEL class="dac-form-checkbox-button" for="newsletter-add"></LABEL> 
+                        </DIV>
+<DIV class="dac-media-body"><LABEL class="dac-form-label dac-form-aside" for="newsletter-add">Add 
+me to the mailing list for the monthly newsletter and occasional emails about 
+development and Google Play opportunities.<SPAN 
+class="dac-form-required">*</SPAN></LABEL>                         
+</DIV></DIV></DIV>
+<DIV class="dac-form-radio-group">
+<DIV class="dac-media">
+<DIV class="dac-media-figure"><INPUT name="entry.2045036090" class="dac-form-checkbox" 
+id="newsletter-terms" required="" type="checkbox" value="I acknowledge that the information provided in this form will be subject to Google's privacy policy (https://www.google.com/policies/privacy/)."> 
+                          <LABEL class="dac-form-checkbox-button" for="newsletter-terms"></LABEL> 
+                        </DIV>
+<DIV class="dac-media-body"><LABEL class="dac-form-label dac-form-aside" for="newsletter-terms">I 
+acknowledge that the information provided in this form will be subject to <A 
+href="https://www.google.com/policies/privacy/">Google's privacy 
+policy</A>.<SPAN class="dac-form-required">*</SPAN></LABEL>                      
+   </DIV></DIV></DIV></DIV></DIV></FIELDSET></SECTION><FOOTER class="dac-modal-footer">
+<DIV class="cols">
+<DIV class="col-2of5"></DIV></DIV><BUTTON class="dac-fab dac-primary dac-large dac-modal-action" 
+type="submit" value="Submit"><I class="dac-sprite dac-arrow-right"></I></BUTTON> 
+            </FOOTER></FORM></SECTION><SECTION class="dac-swap-section dac-right">
+<DIV class="dac-modal-content">
+<P class="newsletter-success-message">              You have successfully signed 
+up for the latest Android developer news and tips.             
+</P></DIV></SECTION></DIV></DIV></DIV></DIV><!-- end footer --> </DIV><!-- end doc-content --> 
+</DIV><!-- end .cols --> </DIV><!-- end body-content -->   
+<SCRIPT src="style/ytblogger_lists_unified.json" type="text/javascript"></SCRIPT>
+   
+<SCRIPT src="style/jd_lists_unified.js" type="text/javascript"></SCRIPT>
+   
+<SCRIPT src="style/jd_extras.js" type="text/javascript"></SCRIPT>
+   
+<SCRIPT src="style/jd_collections.js" type="text/javascript"></SCRIPT>
+   
+<SCRIPT src="style/jd_tag_helpers.js" type="text/javascript"></SCRIPT>
+ </BODY></HTML>
