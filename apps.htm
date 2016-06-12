@@ -490,34 +490,29 @@ Services</A>）处理的，这些服务使用这些事件中的信息去产生�
   
   <DT><CODE><A href="http://developer.android.com/reference/android/view/View.html#onPopulateAccessibilityEvent(android.view.accessibility.AccessibilityEvent)">onPopulateAccessibilityEvent()</A></CODE></DT>
   
-   <DD>(API Level 14) This method sets the spoken text prompt of the <CODE><A 
+   <DD>
+   (API Level 14) This method sets the spoken text prompt of the <CODE><A 
   href="http://developer.android.com/reference/android/view/accessibility/AccessibilityEvent.html">AccessibilityEvent</A></CODE> 
   for your view. This method is also called if the view is a child of a view 
-  which generates an accessibility event.   
+  which generates an accessibility event.  
+<div class="zhongwen">(API级别14)该方法为视图的<CODE><A 
+  href="http://developer.android.com/reference/android/view/accessibility/AccessibilityEvent.html">AccessibilityEvent</A></CODE>设置朗读文本提示。如果视图是另一个生成无障碍事件视图的子视图，调用该方法。</div>  
   <P class="note"><STRONG>Note:</STRONG> Modifying additional attributes beyond 
   the text within this method potentially overwrites properties set by other 
   methods. While you can modify attributes of the accessibility event with this 
   method, you should limit these changes to text content, and use the <CODE><A 
   href="http://developer.android.com/reference/android/view/View.html#onInitializeAccessibilityEvent(android.view.accessibility.AccessibilityEvent)">onInitializeAccessibilityEvent()</A></CODE> 
   method to modify other properties of the event.</P>
+  <P class="note"><div class="zhongwen"><STRONG>注意：</STRONG> 通过该方法修改文本以外的属性可能会被其他方法重写。虽然在该方法中开发者可以修改无障碍事件的属性，但是应该做到这些改变仅限于文本内容，并使用<CODE><A 
+  href="http://developer.android.com/reference/android/view/View.html#onInitializeAccessibilityEvent(android.view.accessibility.AccessibilityEvent)">onInitializeAccessibilityEvent()</A></CODE>方法修改事件的其他属性。</div></P>
+  
   <P class="note"><STRONG>Note:</STRONG> If your implementation of this event 
   completely overrides the output text without allowing other parts of your 
   layout to modify its content, then do not call the super implementation of 
-  this method in your code.</P></DD>
-  
-  <DD class="zhongwen">(API级别14)该方法为视图的<CODE><A 
-  href="http://developer.android.com/reference/android/view/accessibility/AccessibilityEvent.html">AccessibilityEvent</A></CODE>设置朗读文本提示。如果视图是另一个生成无障碍事件视图的子视图，调用该方法。
-  <P class="note"><STRONG>注意：</STRONG> 通过该方法修改文本以外的属性可能会被其他方法重写。虽然在该方法中开发者可以修改无障碍事件的属性，但是应该做到这些改变仅限于文本内容，并使用<CODE><A 
-  href="http://developer.android.com/reference/android/view/View.html#onInitializeAccessibilityEvent(android.view.accessibility.AccessibilityEvent)">onInitializeAccessibilityEvent()</A></CODE>方法修改事件的其他属性。</P>
-  <P class="note"><STRONG>注意：</STRONG> 如果该事件的实现完全重写了输出文本，而不允许布局的其他部分修改这个内容，不要在代码中调用该方法的父类实现。</P></DD>
+  this method in your code.</P>
+  <P class="note"><div class="zhongwen"><STRONG>注意：</STRONG> 如果该事件的实现完全重写了输出文本，而不允许布局的其他部分修改这个内容，不要在代码中调用该方法的父类实现。</P></div></DD>
   
   
-  <DT><CODE><A href="http://developer.android.com/reference/android/view/View.html#onInitializeAccessibilityEvent(android.view.accessibility.AccessibilityEvent)">onInitializeAccessibilityEvent()</A></CODE></DT>
- 
-   <P class="note"><STRONG>Note:</STRONG> If your implementation of this event 
-  completely overrides the output text without allowing other parts of your 
-  layout to modify its content, then do not call the super implementation of 
-  this method in your code.</P></DD>
   <DT><CODE><A href="http://developer.android.com/reference/android/view/View.html#onInitializeAccessibilityEvent(android.view.accessibility.AccessibilityEvent)">onInitializeAccessibilityEvent()</A></CODE></DT>
   <DD>(API Level 14) The system calls this method to obtain additional 
   information about the state of the view, beyond text content. If your custom 
