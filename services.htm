@@ -68,9 +68,10 @@ itemscope=""><A name="top"></A>
 <DIV class="col-12" id="doc-col">
 <br/>
 <div class="nav">
-<div>
-<ul class="nav1">
-<li><a href="declaration.htm">翻译声明</a></li>
+<div  class="nav1">
+<div class="articletop"><h1>Android开发无障碍指南</h1></div>
+<ul>
+<li><a href="declaration.htm" class="inlink">翻译声明</a></li>
 <li><a href="https://developer.android.com/guide/topics/ui/accessibility/index.html">英文原文</a></li>
 <li><a href="http://informationaccessibilityassociation.github.io/androidAccessibility/declaration.htm">中文版</a></li>
 </ul>
@@ -89,29 +90,29 @@ itemscope=""><A name="top"></A>
 <H2>主题</H2>
 
 <OL>
-<LI><A href="index.htm"> 
+<LI><A href="index.htm" class="inlink"> 
      无障碍</A></LI>
-  <LI><A href="apps.htm"> 
+  <LI><A href="apps.htm" class="inlink"> 
      让应用无障碍</A></LI>
-  <LI><A href="checklist.htm"> 
+  <LI><A href="checklist.htm" class="inlink"> 
      无障碍开发清单</A></LI>
-  <LI><A href="services.htm"> 
+  <LI><A href="services.htm" class="inlink"> 
      构建无障碍服务</A></LI></OL>
 <H2>本章目录</H2>
   <OL>
-  <LI><A href="services.htm#manifest">manifest声明和权限</A>       
+  <LI><A href="services.htm#manifest" class="inlink">Manifests声明和权限</A>       
   <OL>
-    <LI><A href="services.htm#service-declaration">无障碍服务声明</A></LI>
-    <LI><A href="services.htm#service-config">无障碍服务配置</A></LI></OL></LI>
-  <LI><A href="services.htm#register">注册无障碍事件</A></LI>
-  <LI><A href="services.htm#methods">无障碍服务方法</A></LI>
-  <LI><A href="services.htm#event-details">获得事件详情</A></LI>
-  <LI><A href="services.htm#act-for-users">为用户采取措施</A>       
+    <LI><A href="services.htm#service-declaration" class="inlink">无障碍服务声明</A></LI>
+    <LI><A href="services.htm#service-config" class="inlink">无障碍服务配置</A></LI></OL></LI>
+  <LI><A href="services.htm#register" class="inlink">注册无障碍事件</A></LI>
+  <LI><A href="services.htm#methods" class="inlink">无障碍服务方法</A></LI>
+  <LI><A href="services.htm#event-details" class="inlink">获得事件详情</A></LI>
+  <LI><A href="services.htm#act-for-users" class="inlink">为用户采取措施</A>       
   <OL>
-    <LI><A href="services.htm#detect-gestures">手势监听</A></LI>
-    <LI><A href="services.htm#using-actions">使用无障碍操作</A></LI>
-    <LI><A href="services.htm#focus-types">使用焦点模式</A></LI></OL></LI>
-  <LI><A href="services.htm#examples">样例代码</A></LI></OL>
+    <LI><A href="services.htm#detect-gestures" class="inlink">手势监听</A></LI>
+    <LI><A href="services.htm#using-actions" class="inlink">使用无障碍操作</A></LI>
+    <LI><A href="services.htm#focus-types" class="inlink">使用焦点模式</A></LI></OL></LI>
+  <LI><A href="services.htm#examples" class="inlink">样例代码</A></LI></OL>
   
 <H2>关键类</H2>
 <OL>
@@ -154,13 +155,13 @@ introduced in  Android 4.0.</P>
 <P class="zhongwen">构建和部署无障碍服务的能力在Android 1.6（API等级4）被推出，并在Android 4.0（API等级14）明显改善其功能。Android<A href="http://developer.android.com/tools/support-library/index.html">支持库</A>也被更新，Android 4.0发布的支持库可以使得这些无障碍特性也能支持android 1.6。鼓励那些致力于实现广泛可兼容的无障碍服务开发者们使用支持库，并且在Android4.0版本中开发更多先进的无障碍特性。</P>
 
 
-<H2 id="manifest"> manifest声明和权限</H2>
+<H2 id="manifest"> Manifests声明和权限</H2>
 
 <P>Applications that provide accessibility services must include specific 
 declarations in their application manifests to be treated as an accessibility 
 service by the Android system. This section explains the required and optional 
 settings for accessibility services.</P>
-<P class="zhongwen">提供无障碍服务的应用，必须在应用的声明（manifest）文件中明确声明，以便android系统把此应用程序作为无障碍服务处理。本节介绍无障碍服务的必需和可选设置。</P>
+<P class="zhongwen">提供无障碍服务的应用，必须在应用的声明（manifests）文件中明确声明，以便android系统把此应用程序作为无障碍服务处理。本节介绍无障碍服务的必需和可选设置。</P>
 
 <H3 id="service-declaration">无障碍服务声明</H3>
 
@@ -452,7 +453,7 @@ href="http://developer.android.com/reference/android/support/v4/view/accessibili
   <CODE>true</CODE>. If you do not include this setting in your service 
   configuration xml file, calls to <CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityRecord.html#getSource()">getSource()</A></CODE> 
   fail.</P>
-  <P class="caution"><div class="zhongwen"><STRONG>重要:</STRONG>从一个<CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityEvent.html">AccessibilityEvent</A></CODE>访问视图层次的能力会将用户私人信息潜在的暴露给无障碍服务。基于该原因，无障碍服务必须在<A href="services.htm#service-config">无障碍服务配置XML</A>文件请求访问权限，该文件中需要包含<CODE>canRetrieveWindowContent</CODE>属性并将其设置为<CODE>true</CODE>。如果XML文件不包含这些设置，调用<CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityRecord.html#getSource()">getSource()</A></CODE>将会失败。</div>
+  <P class="caution"><div class="zhongwen"><STRONG>重要:</STRONG>从一个<CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityEvent.html">AccessibilityEvent</A></CODE>访问视图层次的能力会将用户私人信息潜在的暴露给无障碍服务。基于该原因，无障碍服务必须在<A href="services.htm#service-config" class="inlink">无障碍服务配置XML</A>文件请求访问权限，该文件中需要包含<CODE>canRetrieveWindowContent</CODE>属性并将其设置为<CODE>true</CODE>。如果XML文件不包含这些设置，调用<CODE><A href="http://developer.android.com/reference/android/view/accessibility/AccessibilityRecord.html#getSource()">getSource()</A></CODE>将会失败。</div>
 </P>
 
 
