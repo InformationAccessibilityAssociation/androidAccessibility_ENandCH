@@ -20,6 +20,23 @@ a.inlink{
 span.underline{
 	border-bottom:2px dotted #cacaca;
 }
+.footer{
+text-align:center;
+font-size:14px;
+color:#cacaca;
+}
+.footer a{
+text-align:center;
+font-size:14px;
+color:#cacaca;
+}
+.footer img{
+opacity:0.4;
+filter:alpha(opacity=40); 
+width:400px;
+
+height:100px;
+}
 .nav1{
 	width:400px;
 	float:left;
